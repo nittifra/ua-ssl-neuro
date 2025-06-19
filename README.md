@@ -1,6 +1,6 @@
 # Uncertanity-Aware Semi-Supervised Learning for Neurosurgical Navigation
 
-weights_neurosurgical: https://drive.google.com/file/d/1wGZ4kIfj_DF5r-dL7LkxjKWQbPsqTWQT/
+Weights Neurosurgical: https://drive.google.com/file/d/1wGZ4kIfj_DF5r-dL7LkxjKWQbPsqTWQT/
 
 ## Overview
 
