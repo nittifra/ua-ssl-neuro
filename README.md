@@ -24,7 +24,7 @@ DATA/
 ├── val/
 │   ├── images/
 │   └── masks/
-└── Unlabeled/
+└── unlabeled/
     └── images/
 ```
 ## Configuration file
