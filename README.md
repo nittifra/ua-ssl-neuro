@@ -29,7 +29,4 @@ DATA/
 ```
 ## Configuration file
 
-Training is controlled by a YAML file (example: ./configs/custom.yaml).
-You should include at least number of classes and name of classes.
-
-
+Training is controlled by a YAML file (example: ./configs/custom.yaml)
