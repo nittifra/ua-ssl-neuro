@@ -12,7 +12,7 @@ Key steps:
 - Pseudolabel generation for the unlabeled set
 - Iterative retraining with new pseudolabels
 
-## Folder Structure
+## Dataset Structure
 
 The expected dataset layout is as follows:
 
@@ -30,3 +30,4 @@ DATA/
 ## Configuration file
 
 Training is controlled by a YAML file (example: ./configs/custom.yaml)
+Classes should be defined in the YAML file.
