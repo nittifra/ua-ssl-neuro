@@ -1,8 +1,5 @@
 # Semi-Supervised Segmentation with Uncertainty Calibration
 
-Author: Francesco Nitti  
-Affiliation: Politecnico di Torino – Master Thesis
-
 ## Overview
 
 The core idea is to train a segmentation model with a combination of labeled and unlabeled data. The system estimate uncertainty and generates pseudolabels for confident predictions.
