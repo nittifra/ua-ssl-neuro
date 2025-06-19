@@ -1,5 +1,7 @@
 # Uncertanity-Aware Semi-Supervised Learning for Neurosurgical Navigation
 
+weights_neurosurgical: https://drive.google.com/file/d/1wGZ4kIfj_DF5r-dL7LkxjKWQbPsqTWQT/
+
 ## Overview
 
 Train a segmentation model with a combination of labeled and unlabeled data. The system estimate uncertainty and generates pseudolabels for confident predictions.
