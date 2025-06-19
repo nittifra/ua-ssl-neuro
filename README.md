@@ -2,7 +2,7 @@
 
 ## Overview
 
-The core idea is to train a segmentation model with a combination of labeled and unlabeled data. The system estimate uncertainty and generates pseudolabels for confident predictions.
+Train a segmentation model with a combination of labeled and unlabeled data. The system estimate uncertainty and generates pseudolabels for confident predictions.
 
 Key steps:
 - Base supervised training on a small labeled set
