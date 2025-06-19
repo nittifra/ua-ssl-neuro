@@ -1,4 +1,4 @@
-# Semi-Supervised Segmentation with Uncertainty Calibration
+# Uncertanity-Aware Semi-Supervised Learning for Neurosurgical Navigation
 
 ## Overview
 
