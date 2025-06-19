@@ -17,16 +17,17 @@ Key steps:
 
 The expected dataset layout is as follows:
 
+```
 DATA/
 ├── train/
-│ ├── images/
-│ └── masks/
+│   ├── images/
+│   └── masks/
 ├── val/
-│ ├── images/
-│ └── masks/
-└── unlabeled/
-│ ├── images/
-
+│   ├── images/
+│   └── masks/
+└── Unlabeled/
+    └── images/
+```
 ## Configuration file
 
 Training is controlled by a YAML file (example: ./configs/custom.yaml).
