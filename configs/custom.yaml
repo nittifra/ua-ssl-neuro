@@ -1,0 +1,98 @@
+dataset: custom
+nclass: 19
+crop_size: 512
+data_root: ./dataset
+backbone: vit_base_patch16_siglip_512
+dilations: [6, 12, 18]
+
+save_name: results
+save_every: 5
+epochs: 15
+batch_size: 8
+lr: 0.001 
+lr_multi: 10.0
+lr_min: 0.0001
+
+entropy_minimization:  
+  start_weight: 0.1
+  growth_rate: 0.05
+  max_weight: 1
+
+classes: ['void',
+          'Middle Cerebral Artery',
+          'Middle Cerebral Artery Branches',
+          'Scissors',
+          'Forceps',
+          'Dissector',
+          'Suction',
+          'Frontal Lobe',
+          'Superficial Middle Vein',
+          'Arachnoid',
+          'Temporal Lobe',
+          'Aneurysm',
+          'Cottonoid',
+          'Dura',
+          'CN II',
+          'Cerebrovascular Artery',
+          'Tumor',
+          'Surgicel',
+          'Clip']
+
+criterion:
+  name: CELoss
+  kwargs:
+    ignore_index: 255
+    weights: [0.5,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              2,
+              1,
+              1] 
+
+training_config:
+  schedule:
+
+    - type: BS
+      epochs: 50
+      restart: True
+    - type: OPL
+      samples: 25000 # as MAX samples
+
+    - type: BS
+      epochs: 50
+      restart: True
+    - type: OPL
+      samples: 25000 
+
+    - type: BS
+      epochs: 50
+      restart: True
+    - type: OPL
+      samples: 25000 
+
+    - type: BS
+      epochs: 50
+      restart: True
+
+# Pseudolabeling 
+calibrate_on: "val"
+calibration_cap: 1000
+calibration_runs: 1
+montecarlo_runs: 25
+min_pseudol: 2
+max_ignored: 0
+max_acceptable: 1
+
