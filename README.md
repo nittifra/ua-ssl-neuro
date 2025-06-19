@@ -14,10 +14,10 @@ Key steps:
 
 ## Dataset Structure
 
-The expected dataset layout is as follows:
+The expected dataset layout is as follows. 
 
 ```
-DATA/
+dataset/
 ├── train/
 │   ├── images/
 │   └── masks/
@@ -27,6 +27,9 @@ DATA/
 └── unlabeled/
     └── images/
 ```
+A few annotated samples are provided to understand annotation format.
+
+
 ## Configuration file
 
 Training is controlled by a YAML file (example: ./configs/custom.yaml)
