@@ -5,7 +5,7 @@ This repository contains the implementation of our method
 **"Uncertainty-Aware Semi-Supervised Learning for Neurosurgical Navigation"**
 The full README, and documentation will be made available once the editorial process progresses.
 
-For any inquiries in the meantime, feel free to reach out.
+For any inquiries in the meantime, feel free to reach out @francesco.nitti@polito.it
 
 ## Pretrained Weights
 
