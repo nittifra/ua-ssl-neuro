@@ -1,6 +1,15 @@
 # Uncertanity-Aware Semi-Supervised Learning for Neurosurgical Navigation
 
-Weights: https://drive.google.com/file/d/1wGZ4kIfj_DF5r-dL7LkxjKWQbPsqTWQT/
+## 🚧 **Repository under construction**
+This repository contains the implementation of our method  
+**"Uncertainty-Aware Semi-Supervised Learning for Neurosurgical Navigation"**
+The full README, and documentation will be made available once the editorial process progresses.
+
+For any inquiries in the meantime, feel free to reach out.
+
+## Pretrained Weights
+
+[Download weights from Google Drive](https://drive.google.com/file/d/1wGZ4kIfj_DF5r-dL7LkxjKWQbPsqTWQT/)
 
 ## Overview
 
