@@ -8,17 +8,17 @@ which has been submitted for possible publication to *Applied Soft Computing*.
 
 The full README and documentation will be made available once the editorial process progresses.
 
-For any inquiries in the meantime, feel free to reach out at 📩 francesco.nitti@polito.it
+For any inquiries in the meantime, feel free to reach out at francesco.nitti@polito.it
 
 ---
 
-## 🔗 Pretrained Weights
+## Pretrained Weights
 
 [Download weights from Google Drive](https://drive.google.com/file/d/1wGZ4kIfj_DF5r-dL7LkxjKWQbPsqTWQT/)
 
 ---
 
-## 🧠 Overview
+## Overview
 
 This project trains a segmentation model using a combination of labeled and unlabeled data.  
 The system estimates uncertainty and generates pseudolabels for confident predictions.
@@ -31,7 +31,7 @@ The system estimates uncertainty and generates pseudolabels for confident predic
 
 ---
 
-## 📁 Dataset Structure
+## Dataset Structure
 
 The expected dataset layout is as follows:
 
@@ -50,7 +50,7 @@ A few annotated samples are provided to clarify the annotation format.
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 Training is controlled by a YAML file (e.g., `./configs/custom.yaml`).  
 The list of classes should be defined in the YAML configuration.
