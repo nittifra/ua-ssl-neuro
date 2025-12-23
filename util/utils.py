@@ -1,25 +1,9 @@
-import os
-
 import numpy as np
-
 import torch
-import torch.nn.functional as F
-
 from PIL import Image
 from torchvision import transforms
 import cv2
 
-def count_params(model):
-    param_num = sum(p.numel() for p in model.parameters())
-    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    return param_num / 1e6, trainable_params / 1e6
-
-
-def entropy_minimization(prediction, lambda_entropy = 0.1):
-    softmax_pred = F.softmax(prediction, dim=1)
-    entropy = -torch.sum(softmax_pred * torch.log(softmax_pred + 1e-10), dim=1)
-    entropy_loss = torch.mean(entropy) * lambda_entropy
-    return entropy_loss
 
 def normalize_image(img, resize_size):
     transform = transforms.Compose([
