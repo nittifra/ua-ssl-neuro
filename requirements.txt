@@ -1,0 +1,12 @@
+pyyaml
+torch
+torchvision
+colorama
+alive-progress
+numpy
+scikit-learn
+pillow
+matplotlib
+opencv-python
+albumentations
+timm
