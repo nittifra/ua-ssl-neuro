@@ -1,4 +1,4 @@
-dataset: custom
+dataset: neurosurgical
 nclass: 19
 crop_size: 512
 data_root: ./dataset
@@ -7,7 +7,7 @@ dilations: [6, 12, 18]
 
 save_name: results
 save_every: 5
-epochs: 15
+epochs: 50
 batch_size: 8
 lr: 0.001 
 lr_multi: 10.0
@@ -95,4 +95,6 @@ montecarlo_runs: 25
 min_pseudol: 2
 max_ignored: 0
 max_acceptable: 1
+
+
 
