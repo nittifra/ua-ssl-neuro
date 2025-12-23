@@ -1,7 +1,7 @@
 """
 @ Nitti Francesco
 Folder structure expected:
-DATA/
+dataset/
  ├─ train/  ── images/ , masks/
  ├─ val/    ── images/ , masks/
  └─ unlabeled/ ── images/
