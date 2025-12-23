@@ -25,6 +25,40 @@ from util.utils import (
     remove_small_components,
 )
 
+
+class AverageMeter:
+    """Computes and stores the average and current value"""
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        self.val = 0
+        self.avg = 0
+        self.sum = 0
+        self.count = 0
+
+    def update(self, val, n=1):
+        self.val = val
+        self.sum += val * n
+        self.count += n
+        self.avg = self.sum / self.count
+
+
+def count_params(model):
+    """Count the number of parameters in a model"""
+    param_num = sum(p.numel() for p in model.parameters())
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    return param_num / 1e6, trainable_params / 1e6
+
+
+def entropy_minimization(prediction, lambda_entropy=0.1):
+    """Compute entropy minimization loss for semi-supervised learning"""
+    softmax_pred = F.softmax(prediction, dim=1)
+    entropy = -torch.sum(softmax_pred * torch.log(softmax_pred + 1e-10), dim=1)
+    entropy_loss = torch.mean(entropy) * lambda_entropy
+    return entropy_loss
+
+
 def inference_SSU(
         model,
         input_image,
@@ -599,6 +633,5 @@ def calibration_classes(
 
     plt.savefig(plot_save_path)
     plt.close()
-    #print(f"Double clustering scatter plot saved at {plot_save_path}")
 
     return class_to_pseudolabel, class_acceptable
