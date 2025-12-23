@@ -30,10 +30,13 @@ IMG_EXT = (".png", ".jpg", ".jpeg")
 
 class SupervisedDataset(torch.utils.data.Dataset):
 
-    def __init__(self, image_dir: str, mask_dir: str):
+    def __init__(self, image_dir: str, mask_dir: str, nclass: int = None, ignore_index: int = 255):
         self.image_paths = sorted([os.path.join(image_dir, f) for f in os.listdir(image_dir) if f.lower().endswith(IMG_EXT)])
         self.mask_paths = sorted([os.path.join(mask_dir, f) for f in os.listdir(mask_dir) if f.lower().endswith(IMG_EXT)])
         assert len(self.image_paths) == len(self.mask_paths), "Unequal number of images and masks."
+        self.nclass = nclass
+        self.ignore_index = ignore_index
+        self._warned_invalid = False
 
     def __len__(self):
         return len(self.image_paths)
@@ -41,6 +44,20 @@ class SupervisedDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         img = NORMALIZE(Image.open(self.image_paths[idx]).convert("RGB"))
         mask = torch.from_numpy(np.array(Image.open(self.mask_paths[idx]))).long()
+        
+        # Validate mask values if nclass is provided
+        if self.nclass is not None:
+            # Check for values >= nclass (excluding ignore_index) or negative values
+            invalid_mask = ((mask >= self.nclass) | (mask < 0)) & (mask != self.ignore_index)
+            if invalid_mask.any():
+                if not self._warned_invalid:
+                    invalid_values = torch.unique(mask[invalid_mask]).tolist()
+                    print(f"{Fore.YELLOW}Warning: Found invalid mask values {invalid_values} in {self.mask_paths[idx]}. "
+                          f"Expected values in [0, {self.nclass-1}] or {self.ignore_index}. Clamping to valid range.{Style.RESET_ALL}")
+                    self._warned_invalid = True
+                # Clamp invalid values to ignore_index
+                mask[invalid_mask] = self.ignore_index
+        
         return img, mask
 
 
@@ -82,7 +99,9 @@ def run_epoch(model, loader, optimizer, criterion, epoch_idx, ent_cfg):
 
     model.train()
     loss_meter, ce_meter, ent_meter = AverageMeter(), AverageMeter(), AverageMeter()
-    lambda_base, growth, max_w = ent_cfg.values()
+    lambda_base = ent_cfg["start_weight"]
+    growth = ent_cfg["growth_rate"]
+    max_w = ent_cfg["max_weight"]
 
     with alive_bar(len(loader), spinner="radioactive", bar="classic2", title=f"\n      Epoch {epoch_idx+1}/{ent_cfg['epochs']}".ljust(35)) as bar:
         for img, mask in loader:
@@ -124,10 +143,19 @@ def main(config, save_path, stopper=None, restart=False):
     scheduler = CosineAnnealingLR(optimizer, T_max=config["epochs"], eta_min=config["lr_min"])
 
     # Dataloaders
-    trainloader = DataLoader(SupervisedDataset(os.path.join(config["data_root"], "train/images"), os.path.join(config["data_root"], "train/masks")),
-        batch_size=config["batch_size"], pin_memory=True, num_workers=2, drop_last=True,)
-    valloader = DataLoader(SupervisedDataset(os.path.join(config["data_root"], "val/images"), os.path.join(config["data_root"], "val/masks")),
-        batch_size=1, pin_memory=True, num_workers=1, drop_last=False,)
+    ignore_idx = config["criterion"]["kwargs"].get("ignore_index", 255)
+    trainloader = DataLoader(SupervisedDataset(
+        os.path.join(config["data_root"], "train/images"), 
+        os.path.join(config["data_root"], "train/masks"),
+        nclass=config["nclass"],
+        ignore_index=ignore_idx
+    ), batch_size=config["batch_size"], pin_memory=True, num_workers=2, drop_last=True,)
+    valloader = DataLoader(SupervisedDataset(
+        os.path.join(config["data_root"], "val/images"), 
+        os.path.join(config["data_root"], "val/masks"),
+        nclass=config["nclass"],
+        ignore_index=ignore_idx
+    ), batch_size=1, pin_memory=True, num_workers=1, drop_last=False,)
 
     # Criterion
     crit_cfg = config["criterion"]
