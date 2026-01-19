@@ -3,7 +3,6 @@
 This repository contains the implementation of our method 
 **"Uncertainty-Aware Semi-Supervised Learning for Neurosurgical Navigation"**, 
 which has been submitted for possible publication to *Applied Soft Computing*.
-The full README and documentation will be made available once the editorial process progresses.
 
 For any inquiries in the meantime, feel free to reach out at francesco.nitti@polito.it
 
