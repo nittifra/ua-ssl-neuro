@@ -17,6 +17,10 @@ The system estimates uncertainty and generates pseudolabels for confident predic
 - Iterative retraining with new pseudolabels
 
 
+# Dataset availablility.
+
+You can download the dataset at the following link: https://www.kaggle.com/datasets/artemis90/neurosurgical-navigation-semisupervised-dataset
+
 ## Dataset Structure
 
 The expected dataset layout is as follows:
