@@ -30,7 +30,7 @@ You can download the dataset at the following link: https://www.kaggle.com/datas
 
 ## Dataset Structure
 The expected dataset layout is as follows:
-'''
+```
 dataset/
 ├── train/
 │   ├── images/
@@ -40,7 +40,7 @@ dataset/
 │   └── masks/
 └── unlabeled/
     └── images/
-'''
+```
 
 # Dataset availablility
 
