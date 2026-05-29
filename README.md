@@ -31,6 +31,16 @@ You can download the dataset at the following link: https://www.kaggle.com/datas
 ## Dataset Structure
 The expected dataset layout is as follows:
 
+dataset/
+├── train/
+│   ├── images/
+│   └── masks/
+├── val/
+│   ├── images/
+│   └── masks/
+└── unlabeled/
+    └── images/
+
 # Dataset availablility
 
 You can download the dataset at the following link: https://www.kaggle.com/datasets/artemis90/neurosurgical-navigation-semisupervised-dataset
